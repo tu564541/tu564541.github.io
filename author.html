@@ -48,12 +48,24 @@
 
 </script>
 <body>
+	<div id="fb-root">
+	</div>
+	<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.6";
+	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
 	<div id = "Author">
 	<center><img src = "author/word.jpg" class = "word"  id = "word"></center>
 	<center><img src = "author/25.gif" class = "hl"  id = "hl"></center>
 	<center><img src = "author/sn.gif" class = "sn"  id = "sn"></center>
 	<center><img src = "author/button.gif" class = "button"  id = "button" onclick="javascript:location.href='Welcome.html'"></center>
 	<center><img src = "author/two.gif" class = "two"  id = "two" ></center>
+	</div>
+	<div class="fb-comments" data-href="https://tu564541.github.io/author.html" data-width="800" data-numposts="5">
 	</div>
 	
 </body>
