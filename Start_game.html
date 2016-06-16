@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Start_Game</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+		body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.basic	{position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+		.hide 	{visibility:hidden;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;}
+   .basic_click {cursor:pointer;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+    </style>
+</head>
+<script>
+	function start(){  
+		document.getElementById("start").setAttribute("class","basic");
+		document.getElementById("closesound").play();
+		document.getElementById("closesound").addEventListener( "ended", go, false );
+	}
+	function go(){
+		document.getElementById("start2").setAttribute("class","basic_click");
+		document.getElementById("start").setAttribute("class","hide");
+	}
+	window.addEventListener( "load", start, false );
+</script>
+<body>
+	<audio id = "closesound" preload = "auto">
+         <source src = "start_game/closesound.mp3" type = "audio/mpeg">
+    </audio>
+	<div id = "gamestart">
+		<img src = "start_game/start.jpg" class = "basic" alt = "start" id = "start">
+		<img src = "start_game/start2.jpg" class = "hide" alt = "start2" id = "start2" onclick="javascript:location.href='start_day.html'">
+	</div>
+</body>
+
+</html>

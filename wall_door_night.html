@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Wall_Door_Night</title>
+    <meta charset="utf-8" />
+    <style type="text/css">		 
+		body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.square	{cursor:pointer;
+				 position:absolute;
+				 top:595px;
+				 left: 50%;
+				 margin-left:420px;
+				 z-index:2;}
+		.sun	{cursor:pointer;
+				 position:absolute;
+				 top:15px;
+				 left: 50%;
+				 margin-left:-500px;
+				 z-index:2;}	
+		.basic	{position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+   .basic_click {cursor:pointer;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+  .right_button {cursor:pointer;
+				 position:absolute;
+				 top:570px;
+				 left: 50%;
+				 margin-left:350px;
+				 z-index:2;}
+   .left_button {cursor:pointer;
+				 position:absolute;
+				 top:570px;
+				 left: 50%;
+				 margin-left:-389px;
+				 z-index:2;}
+		.wall	{cursor:pointer;
+				 position:absolute;
+				 top:160px;
+				 left: 50%;
+				 margin-left:-140px;
+				 z-index:2;}
+		.door   {cursor:pointer;
+				 position:absolute;
+				 top:260px;
+				 left: 50%;
+				 margin-left:211px;
+				 z-index:2;}
+		.fan	{cursor:pointer;
+				 position:absolute;
+				 top:349px;
+				 left: 50%;
+				 margin-left:141px;
+				 z-index:2;}
+		.line	{cursor:pointer;
+				 position:absolute;
+				 top:90px;
+				 left: 50%;
+				 margin-left:77px;
+				 z-index:2;}
+		.room	{cursor:pointer;
+				 position:absolute;
+				 top:134px;
+				 left: 50%;
+				 margin-left:-205px;
+				 z-index:2;}
+		.room_3	{position:absolute;
+				 top:134px;
+				 left: 50%;
+				 margin-left:-205px;
+				 z-index:2;}
+		.star	{cursor:pointer;
+				 position:absolute;
+				 top:373px;
+				 left: 50%;
+				 margin-left:-53px;
+				 z-index:3;}
+	   .button0 {cursor:pointer;
+				 position:absolute;
+				 top:285px;
+				 left: 50%;
+				 margin-left:-240px;
+				 z-index:3;}
+		.words	{font-family: 微軟正黑體;
+				 color: white;
+				 position:absolute;
+				 top:160px;
+				 left: 50%;
+				 margin-left:-150px;
+				 z-index:3;
+				 font-size: 20px;}
+		.number	{font-family: 微軟正黑體;
+				 color: white;
+				 position:absolute;
+				 top:270px;
+				 left: 50%;
+				 margin-left:-110px;
+				 z-index:3;
+				 font-size: 20px;}
+		.numb	{font-family: 微軟正黑體;
+				 color: yellow;
+				 position:absolute;
+				 top:320px;
+				 left: 50%;
+				 margin-left:-75px;
+				 z-index:3;
+				 font-size: 30px;}
+		.cheat	{cursor:pointer;
+				 position:absolute;
+				 top:480px;
+				 left: 50%;
+				 margin-left:90px;
+				 z-index:3;}
+  .cheat_answer {font-family: 微軟正黑體;
+				 color: red;
+				 font-size: 30px;
+				 position:absolute;
+				 top:440px;
+				 left: 50%;
+				 margin-left:95px;
+				 z-index:3;}
+	   .outdoor {cursor:pointer;
+				 position:absolute;
+				 top:103px;
+				 left: 50%;
+				 margin-left:-90px;
+				 z-index:2;}
+	   .bandend {position:absolute;
+				 top:103px;
+				 left: 50%;
+				 margin-left:-90px;
+				 z-index:2;}
+		.home	{cursor:pointer;
+				 position:absolute;
+				 top:583px;
+				 left: 50%;
+				 margin-left:319px;
+				 z-index:2;}
+    .home:hover {cursor:pointer;
+				 position:absolute;
+				 top:573px;
+				 left: 50%;
+				 margin-left:319px;
+				 z-index:2;}
+	   .restart {cursor:pointer;
+				 position:absolute;
+				 top:583px;
+				 left: 50%;
+				 margin-left:229px;
+				 z-index:2;}
+  .restart:hover {cursor:pointer;
+				 position:absolute;
+				 top:573px;
+				 left: 50%;
+				 margin-left:229px;
+				 z-index:2;}
+		.hide 	{visibility:hidden;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;}
+		span	{position: relative;
+                 bottom: -1ex;
+				 font-size: 15px;}
+    </style>
+	<script src="jquery.min.js">
+	</script>
+    <script>
+		var doorkey = localStorage.doorkey;
+		var fan = localStorage.N_fan;
+		var times = 0;
+		var ans;
+		var finish_wall = localStorage.N_wall;
+		var whiteboard = localStorage.whiteboard;
+		var fan_button = 0;
+		function start(){
+			document.getElementById("wall_door").setAttribute("class","basic");
+			document.getElementById("wall_start").setAttribute("class","wall");
+			document.getElementById("door_start").setAttribute("class","door");
+			document.getElementById("fan_start").setAttribute("class","fan");
+			document.getElementById("left_button").setAttribute("class","left_button");
+			document.getElementById("right_button").setAttribute("class","right_button");
+			document.getElementById("door").setAttribute("class","hide");
+			document.getElementById("wall").setAttribute("class","hide");
+			document.getElementById("line").setAttribute("class","hide");
+			document.getElementById("fan0").setAttribute("class","hide");
+			document.getElementById("fan3").setAttribute("class","hide");
+			document.getElementById("button0").setAttribute("class","hide");
+			document.getElementById("wall_start").addEventListener( "click", view_wall, false );
+			document.getElementById("door_start").addEventListener( "click", view_door, false );
+			document.getElementById("fan_start").addEventListener( "click", view_fan, false );	
+		}
+		
+		//wall
+		function view_wall(){
+			document.getElementById("wall_door").setAttribute("class","hide");
+			document.getElementById("wall_start").setAttribute("class","hide");
+			document.getElementById("door_start").setAttribute("class","hide");
+			document.getElementById("fan_start").setAttribute("class","hide");
+			document.getElementById("left_button").setAttribute("class","hide");
+			document.getElementById("right_button").setAttribute("class","hide");
+			document.getElementById("wall").setAttribute("class","basic");
+			finish_wall = localStorage.N_wall;
+			if(finish_wall != 1){
+				document.getElementById("line").setAttribute("class","line");
+				document.getElementById("line").addEventListener( "click", view_cave, false );
+			}else{
+				document.getElementById("wall").setAttribute("src","night_wall_door/wall_finish.jpg");
+				document.getElementById("wall").setAttribute("class","basic_click");
+				document.getElementById("wall").addEventListener( "click", start, false );
+			}
+		}
+		function view_cave(){
+			if(fan == 1){
+				document.getElementById("line").setAttribute("class","hide");
+				document.getElementById("room_1").setAttribute("class","room");
+				$("#room_1").click(function(){
+					document.getElementById("room_1").setAttribute("class","hide");
+					document.getElementById("room_2").setAttribute("class","room");
+				});
+				$("#room_2").click(function(){
+					document.getElementById("room_2").setAttribute("class","hide");
+					document.getElementById("room_3").setAttribute("class","room_3");
+					document.getElementById("star").setAttribute("class","star");
+				});
+				var k = 0;
+				$("#star").click(function(){
+					if(k == 0){
+						$("#star").animate({
+							left: '-=55px',
+							top: '-=70px',
+							height: '+=100px',
+							width: '+=100px'	
+						});
+						k++;
+					}else{
+						playgame();
+					}
+				});
+			}else{
+				window.alert("Please go to see the fan first!!!");
+				start();
+			}
+		}
+		function playgame(){
+			var words = document.getElementById("words");
+			var number = document.getElementById("number");
+			var numb = document.getElementById("numb");
+			document.getElementById("star").setAttribute("class","hide");
+			document.getElementById("room_3").setAttribute("class","hide");
+			document.getElementById("cheat_ans").setAttribute("class","hide");
+			document.getElementById("wall").setAttribute("src","night_wall_door/wall_2.jpg");
+			document.getElementById("cheat").setAttribute("class","cheat");
+			words.setAttribute("class","words");
+			number.setAttribute("class","number");
+			numb.setAttribute("class","numb");
+			if(times == 0){
+				ans = Math.floor(1 + Math.random() * 100);
+				times = 5;
+				numb.innerHTML = "1 ~ 100<br>開始囉!<br><span> 還有" + times + "次機會!!!</span>";
+				document.getElementById("sure").addEventListener( "click", trytry, false );
+			}else{
+				document.getElementById("sure").addEventListener( "click", trytry, false );
+			}
+			document.getElementById("cheat").addEventListener( "click", seeans, false );
+		}
+		function trytry(){
+			var guessnumb = document.getElementById("guess").value;
+			var number = document.getElementById("numb");
+			times--;
+			if (guessnumb == ans){
+				document.getElementById("wall").setAttribute("src","night_wall_door/wall_finish.jpg");
+				document.getElementById("wall").setAttribute("class","basic_click");
+				document.getElementById("words").setAttribute("class","hide");
+				document.getElementById("number").setAttribute("class","hide");
+				document.getElementById("numb").setAttribute("class","hide");
+				document.getElementById("cheat_ans").setAttribute("class","hide");
+				var inputname = "N_wall";
+				var input = 1;
+				localStorage.setItem(inputname, input);
+				document.getElementById("wall").addEventListener( "click", start, false );
+			}else if(guessnumb < ans){
+				number.innerHTML = "1 ~ 100<br>太小囉!<br><span> 還有" + times + "次機會!!!</span>";
+			}else{
+				number.innerHTML = "1 ~ 100<br>太大囉!<br><span> 還有" + times + "次機會!!!</span>";
+			}
+			
+			if(times == 0) playgame();
+		}
+		function seeans(){
+			document.getElementById("cheat").setAttribute("class","hide");
+			var cheat_ans = document.getElementById("cheat_ans")
+			cheat_ans.innerHTML = ans;
+			cheat_ans.setAttribute("class","cheat_answer");
+		}
+		
+		//door
+		function view_door(){
+			document.getElementById("wall_door").setAttribute("class","hide");
+			document.getElementById("wall_start").setAttribute("class","hide");
+			document.getElementById("door_start").setAttribute("class","hide");
+			document.getElementById("fan_start").setAttribute("class","hide");
+			document.getElementById("left_button").setAttribute("class","hide");
+			document.getElementById("right_button").setAttribute("class","hide");
+			document.getElementById("door").setAttribute("class","basic_click");
+			document.getElementById("door").addEventListener( "click", open_door, false );
+		}
+		function open_door(){
+			if(doorkey == 1){
+				document.getElementById("door").setAttribute("src","night_wall_door/door_open.jpg");
+				document.getElementById("door").setAttribute("class","basic");
+				document.getElementById("outdoor").setAttribute("class","outdoor");
+				document.getElementById("outdoor").addEventListener( "click", end_game, false );
+			}else{
+				window.alert("Please go to the computer and enter the password!!!");
+				start();
+			}
+		}
+		function end_game(){
+			document.getElementById( "m" ).play();
+			document.getElementById("outdoor").setAttribute("class","hide");
+			document.getElementById("door").setAttribute("class","hide");
+			document.getElementById("door_end").setAttribute("class","basic");
+			document.getElementById("bandend").setAttribute("class","bandend");
+			localStorage.clear();
+			document.getElementById( "m" ).addEventListener( "ended", gameover, false );
+		}
+		function gameover(){
+			document.getElementById("door_end").setAttribute("class","hide");
+			document.getElementById("bandend").setAttribute("class","hide");
+			document.getElementById("square").setAttribute("class","hide");
+			document.getElementById("gameover").setAttribute("class","basic");
+			document.getElementById("home").setAttribute("class","home");
+			document.getElementById("restart").setAttribute("class","restart");
+		}
+		
+		function view_fan(){
+			document.getElementById("wall_door").setAttribute("class","hide");
+			document.getElementById("wall_start").setAttribute("class","hide");
+			document.getElementById("door_start").setAttribute("class","hide");
+			document.getElementById("fan_start").setAttribute("class","hide");
+			document.getElementById("left_button").setAttribute("class","hide");
+			document.getElementById("right_button").setAttribute("class","hide");
+			fan = localStorage.N_fan;
+			if(fan != 1){
+				document.getElementById("fan0").setAttribute("class","basic");
+				document.getElementById("button0").setAttribute("class","button0");
+				document.getElementById("button0").addEventListener( "click", change_fan, false );
+			}else{
+				document.getElementById("fan3").setAttribute("class","basic_click");
+				document.getElementById("fan3").addEventListener( "click", start, false );
+			}
+		}
+		function change_fan(){
+			if(whiteboard == 1){
+				fan_button++;
+				if(fan_button <= 2){
+					document.getElementById("button0").setAttribute("src","night_wall_door/button"+fan_button+".jpg");
+				}else if(fan_button == 3){
+					document.getElementById("button0").setAttribute("class","hide");
+					document.getElementById("fan0").setAttribute("src","night_wall_door/fan3.jpg");
+					var inputname = "N_fan";
+					var input = 1;
+					localStorage.setItem(inputname, input); 
+					view_fan();
+				}
+				
+				
+			}else{
+				window.alert("Please go to see the whiteboard first!!!");
+				start();
+			}
+		}
+		
+		window.addEventListener( "load", start, false );	
+	
+    </script>
+</head>
+
+<body>
+	<audio id = "m" preload = "auto">
+         <source src = "night_wall_door/mm.mp3" type = "audio/mpeg">
+    </audio>
+	<div id = "nightwall">
+		<p id = "words" class = "hide">請從1~100中間找到對的數字<br>請注意你只有5次機會!!!!!<br>
+		用完數字將改變並重新再開始</p>
+		<p id = "number" class = "hide">數字: <input id = "guess" type = "text" size = "5">
+		<input id = "sure" type = "button" value = "確定"></p>
+		<p id = "numb" class = "hide">1 ~ 100<br><span> 還有5次機會!!!</span></p>
+		<input id = "cheat" class = "hide" type = "button" value = "作弊">
+		<p id = "cheat_ans" class = "hide">0</p>
+		<img src = "night_wall_door/wall_door.jpg" class = "basic" alt = "wall_door" id = "wall_door">
+		<img src = "night_wall_door/wall_start.jpg" class = "wall" alt = "wall_start" id = "wall_start">
+		<img src = "night_wall_door/door_start.jpg" class = "door" alt = "door_start" id = "door_start">
+		<img src = "night_wall_door/fan_start.jpg" class = "fan" alt = "fan_start" id = "fan_start">
+		<img src = "night_wall_door/wall.jpg" class = "hide" alt = "wall" id = "wall">
+		<img src = "night_wall_door/wall_2.jpg" class = "hide" alt = "wall_2" id = "wall_2">
+		<img src = "night_wall_door/wall_finish.jpg" class = "hide" alt = "wall_finish" id = "wall_finish">
+		<img src = "night_wall_door/star.jpg" class = "hide" alt = "star" id = "star">
+		<img src = "night_wall_door/room_1.jpg" class = "hide" alt = "room_1" id = "room_1">
+		<img src = "night_wall_door/room_2.jpg" class = "hide" alt = "room_2" id = "room_2">
+		<img src = "night_wall_door/room_3.jpg" class = "hide" alt = "room_3" id = "room_3">
+		<img src = "night_wall_door/outdoor.jpg" class = "hide" alt = "outdoor" id = "outdoor">
+		<img src = "night_wall_door/line.jpg" class = "hide" alt = "line" id = "line">
+		<img src = "night_wall_door/fan0.jpg" class = "hide" alt = "fan0" id = "fan0">
+		<img src = "night_wall_door/fan3.jpg" class = "hide" alt = "fan3" id = "fan3">
+		<img src = "night_wall_door/door.jpg" class = "hide" alt = "door" id = "door">
+		<img src = "night_wall_door/door_open.jpg" class = "hide" alt = "door_open" id = "door_open">
+		<img src = "night_wall_door/button0.jpg" class = "hide" alt = "button0" id = "button0">
+		<img src = "night_wall_door/button1.jpg" class = "hide" alt = "button1" id = "button1">
+		<img src = "night_wall_door/button2.jpg" class = "hide" alt = "button2" id = "button2">
+		<img src = "night_wall_door/door_end.jpg" class = "hide" alt = "door_end" id = "door_end">
+		<img src = "night_wall_door/bandend.jpg" class = "hide" alt = "bandend" id = "bandend">
+		<img src = "night_wall_door/gameover.jpg" class = "hide" alt = "gameover" id = "gameover">
+		<img src = "night_wall_door/home.jpg" class = "hide" alt = "home" id = "home" onclick="javascript:location.href='Welcome.html'">
+		<img src = "night_wall_door/restart.jpg" class = "hide" alt = "restart" id = "restart" onclick="javascript:location.href='start_day.html'">
+		<img src = "night_wall_door/left_button.jpg" class = "left_button" alt = "left_button" id = "left_button" onclick="javascript:location.href='Start_Night.html'">
+		<img src = "night_wall_door/right_button.jpg" class = "right_button" alt = "right_button" id = "right_button" onclick="javascript:location.href='Whiteboard_Night.html'">
+	</div>
+	<img src = "square.jpg" class = "square" alt = "square" id = "square" onclick="javascript:location.href='welcome.html'">
+	<img src = "sun.jpg" class = "sun" alt = "sun" id = "sun" onclick="javascript:location.href='start_day.html'">
+</body>
+
+</html>

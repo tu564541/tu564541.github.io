@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset = "utf-8">
+		<title>north_one</title>
+		<style type = "text/css">
+		body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.after		{position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:1;}
+		.before		{position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:2;}
+		.screen		{cursor:pointer;
+					position: absolute;
+					 top:100px;
+					 left: 50%;
+					 margin-left: -280px;
+					 z-index: 3;}
+		.hide		{visibility: hidden;
+					 position: absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left: -400px;	
+						}
+
+		.show		{width: 20%;
+					position:absolute;
+					top: 358px;		
+					margin-left: -180px;
+					z-index: 4;
+					visibility: visible;}
+		.desk		{
+					position:absolute;
+					top: 21px;		
+					margin-left: -407px;
+					z-index: 0;
+					visibility: visible;}
+		.right_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:338px;
+				 z-index:6;}
+   .left_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:-389px;
+				 z-index:6;}
+		.square	{cursor:pointer;
+				 position:absolute;
+				 top:595px;
+				 left: 50%;
+				 margin-left:420px;
+				 z-index:2;}
+		.moon	{cursor:pointer;
+				 position:absolute;
+				 top:15px;
+				 left: 50%;
+				 margin-left:-488px;
+				 z-index:2;}
+		</style>
+		<script src="jquery.min.js">
+		</script>
+
+		<script>
+			var a = localStorage.a;
+			$(document).ready(function(){
+			
+				$("#screen").click(function(){
+					document.getElementById("screen").setAttribute("class", "hide");
+					document.getElementById("before").setAttribute("class","hide");
+					
+					
+					$("#after").unbind('click').click(function(){a = localStorage.a;
+						if(a != 1){
+						document.getElementById( "keys" ).play();
+						document.getElementById("key").setAttribute("class","show");
+						alert("You found the key!");
+						$("#key").unbind('click').click(function(){
+							document.getElementById("key").setAttribute("class","hide");
+							var inputname = "a";
+							var input = 1;
+							localStorage.setItem(inputname, input);
+							inputname = "box_key";
+							input = 1;
+							localStorage.setItem(inputname, input);
+						});}
+					});
+					
+				});
+			});
+					
+		
+		
+		</script>
+	</head>
+	<body>
+	<div id = "place"  >
+	<audio id = "keys" preload = "auto">
+	<source src = "north_one/keys.mp3" type = "audio/mpeg">
+	</audio>
+		<center><img src = "north_one/IMG_0933.jpg" class ="before" id = "before"></center>
+		<center><img src = "north_one/IMG_0932.jpg" class = "after" id = "after"></center>
+		<center><img src = "north_one/5.gif" class = "screen" id = "screen"></center>
+		<center><img src = "north_one/key.gif" class = "hide" id = "key"></center>
+		<center><img src = "north_one/desk.jpg" class = "desk" id = "desk"></center>	
+		<img src = "day_start/left_button.jpg" class = "left_button" alt = "left_button" id = "left_button" onclick="javascript:location.href='day_wall_door.html'">
+		<img src = "day_start/right_button.jpg" class = "right_button" alt = "right_button" id = "right_button" onclick="javascript:location.href='day_whiteboard.html'">		
+	</div>
+	<img src = "square.jpg" class = "square" alt = "square" id = "square" onclick="javascript:location.href='welcome.html'">
+	<img src = "moon.jpg" class = "moon" alt = "moon" id = "moon" onclick="javascript:location.href='Start_Night.html'">
+	</body>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Start_Night</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+		body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.square	{cursor:pointer;
+				 position:absolute;
+				 top:595px;
+				 left: 50%;
+				 margin-left:420px;
+				 z-index:2;}
+		.sun	{cursor:pointer;
+				 position:absolute;
+				 top:15px;
+				 left: 50%;
+				 margin-left:-500px;
+				 z-index:2;}				 
+		.basic	{position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+   .basic_click {cursor:pointer;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+	.desk_left	{cursor:pointer;
+				 position:absolute;
+				 top:140px;
+				 left: 50%;
+				 margin-left:-390px;
+				 z-index:2;}
+	.desk_right {cursor:pointer;
+				 position:absolute;
+				 top:145px;
+				 left: 50%;
+				 margin-left:235px;
+				 z-index:2;}
+   .desk_middle {cursor:pointer;
+				 position:absolute;
+				 top:207px;
+				 left: 50%;
+				 margin-left:-170px;
+				 z-index:2;}
+	 .toy_start {cursor:pointer;
+				 position:absolute;
+				 top:95px;
+				 left: 50%;
+				 margin-left:-2px;
+				 z-index:2;}
+	.box_take	{cursor:pointer;
+				 position:absolute;
+				 top:105px;
+				 left: 50%;
+				 margin-left:-247px;
+				 z-index:2;}
+	.box_open	{cursor:pointer;
+				 position:absolute;
+				 top:123px;
+				 left: 50%;
+				 margin-left:-200px;
+				 z-index:2;}
+  .right_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:338px;
+				 z-index:2;}
+   .left_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:-389px;
+				 z-index:2;}
+     .up_button {cursor:pointer;
+				 position:absolute;
+				 top:40px;
+				 left: 50%;
+				 margin-left:335px;
+				 z-index:2;}		 
+		.hide 	{visibility:hidden;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;}
+    </style>
+    <script>
+		var toys = localStorage.N_start_toys;
+		var left = localStorage.N_start_left;
+		var right = localStorage.N_start_right;
+		var middle = 0;
+		var box_key = localStorage.box_key;
+		var finish = localStorage.N_start_finish;
+		if(finish != 1){
+			function start(){
+				document.getElementById("desk").setAttribute("class","basic");
+				document.getElementById("desk_left").setAttribute("class","desk_left");
+				document.getElementById("desk_middle").setAttribute("class","desk_middle");
+				document.getElementById("desk_right").setAttribute("class","desk_right");
+				document.getElementById("toy_start").setAttribute("class","toy_start");
+				document.getElementById("left_button").setAttribute("class","left_button");
+				document.getElementById("right_button").setAttribute("class","right_button");
+				document.getElementById("up_button").setAttribute("class","up_button");
+				document.getElementById("toy").setAttribute("class","hide");
+				document.getElementById("head2").setAttribute("class","hide");
+				document.getElementById("head").setAttribute("class","hide");
+				document.getElementById("box_close").setAttribute("class","hide");
+				document.getElementById("box_take").setAttribute("class","hide");
+				document.getElementById("desk_left").addEventListener( "click", view_left, false );
+				document.getElementById("desk_middle").addEventListener( "click", view_middle, false );
+				document.getElementById("desk_right").addEventListener( "click", view_right, false );
+				document.getElementById("toy_start").addEventListener( "click", view_toy, false );
+			}
+			
+			function view_left(){
+				document.getElementById("desk").setAttribute("class","hide");
+				document.getElementById("desk_left").setAttribute("class","hide");
+				document.getElementById("desk_middle").setAttribute("class","hide");
+				document.getElementById("desk_right").setAttribute("class","hide");
+				document.getElementById("toy_start").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("up_button").setAttribute("class","hide");
+				document.getElementById("head2").setAttribute("class","basic_click");
+				left = localStorage.N_start_left;
+				if(left != 1){
+					document.getElementById("ban").play();
+					var inputname = "N_start_left";
+					var input = 1;
+					localStorage.setItem(inputname, input); 
+				}
+				document.getElementById("head2").addEventListener( "click", start, false );
+				
+			}
+			
+			function view_middle(){
+				document.getElementById("desk").setAttribute("class","hide");
+				document.getElementById("desk_left").setAttribute("class","hide");
+				document.getElementById("desk_middle").setAttribute("class","hide");
+				document.getElementById("desk_right").setAttribute("class","hide");
+				document.getElementById("toy_start").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("up_button").setAttribute("class","hide");
+				document.getElementById("box_close").setAttribute("class","basic");
+				if(middle != 2){
+					document.getElementById("box_take").setAttribute("class","box_take");
+					document.getElementById("box_take").addEventListener( "click", box, false );
+				}else{
+					document.getElementById("box_close").setAttribute("class","basic_click");
+				}
+			}
+			function box(){
+				middle = 1;
+				if(box_key == 1){
+					document.getElementById("box_take").setAttribute("class","hide");
+					document.getElementById("box_close").setAttribute("src","night_start/box.jpg");
+					document.getElementById("box_open").setAttribute("class","box_open");
+					document.getElementById("box_open").addEventListener( "click", box_op, false );
+				}else{
+					window.alert("You have to find the KEY first.");
+					start();
+				}
+			}
+			function box_op(){
+				var inputname = "N_start_finish";
+				var input = 1;
+				localStorage.setItem(inputname, input); 
+				middle = 2;
+				document.getElementById("box_open").setAttribute("class","hide");
+				document.getElementById("box_close").setAttribute("src","night_start/eight.jpg");
+				document.getElementById("box_close").setAttribute("class","basic_click");
+				document.getElementById("box_close").addEventListener( "click", start, false );
+			}
+
+			function view_right(){
+				document.getElementById("desk").setAttribute("class","hide");
+				document.getElementById("desk_left").setAttribute("class","hide");
+				document.getElementById("desk_middle").setAttribute("class","hide");
+				document.getElementById("desk_right").setAttribute("class","hide");
+				document.getElementById("toy_start").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("up_button").setAttribute("class","hide");
+				document.getElementById("head").setAttribute("class","basic_click");
+				right = localStorage.N_start_right;
+				if(right != 1){
+					document.getElementById("aaa").play();
+					var inputname = "N_start_right";
+					var input = 1;
+					localStorage.setItem(inputname, input); 
+				}
+				document.getElementById("head").addEventListener( "click", start, false );
+			}
+			
+			function view_toy(){
+				document.getElementById("desk").setAttribute("class","hide");
+				document.getElementById("desk_left").setAttribute("class","hide");
+				document.getElementById("desk_middle").setAttribute("class","hide");
+				document.getElementById("desk_right").setAttribute("class","hide");
+				document.getElementById("toy_start").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("up_button").setAttribute("class","hide");
+				document.getElementById("toy").setAttribute("class","basic_click");
+				toys = localStorage.N_start_toys;
+				if(toys != 1){
+					document.getElementById("wahaha").play();
+					var inputname = "N_start_toys";
+					var input = 1;
+					localStorage.setItem(inputname, input); 
+				}
+				document.getElementById("toy").addEventListener( "click", start, false );
+			}
+		}else{
+			function start(){
+				document.getElementById("desk").setAttribute("class","basic");
+				document.getElementById("desk_left").setAttribute("class","desk_left");
+				document.getElementById("desk_middle").setAttribute("class","desk_middle");
+				document.getElementById("desk_right").setAttribute("class","desk_right");
+				document.getElementById("toy_start").setAttribute("class","toy_start");
+				document.getElementById("left_button").setAttribute("class","left_button");
+				document.getElementById("right_button").setAttribute("class","right_button");
+				document.getElementById("up_button").setAttribute("class","up_button");
+				document.getElementById("toy").setAttribute("class","hide");
+				document.getElementById("head2").setAttribute("class","hide");
+				document.getElementById("head").setAttribute("class","hide");
+				document.getElementById("box_close").setAttribute("class","hide");
+				document.getElementById("box_take").setAttribute("class","hide");
+				document.getElementById("eight").setAttribute("class","hide");
+				document.getElementById("desk_left").addEventListener( "click", view_left, false );
+				document.getElementById("desk_middle").addEventListener( "click", view_middle, false );
+				document.getElementById("desk_right").addEventListener( "click", view_right, false );
+				document.getElementById("toy_start").addEventListener( "click", view_toy, false );
+			}
+			
+			function view_left(){
+				document.getElementById("desk").setAttribute("class","hide");
+				document.getElementById("desk_left").setAttribute("class","hide");
+				document.getElementById("desk_middle").setAttribute("class","hide");
+				document.getElementById("desk_right").setAttribute("class","hide");
+				document.getElementById("toy_start").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("up_button").setAttribute("class","hide");
+				document.getElementById("head2").setAttribute("class","basic_click");
+				left = localStorage.N_start_left;
+				if(left != 1){
+					document.getElementById("ban").play();
+					var inputname = "N_start_left";
+					var input = 1;
+					localStorage.setItem(inputname, input); 
+				}
+				document.getElementById("head2").addEventListener( "click", start, false );
+				
+			}
+			
+			function view_middle(){
+				document.getElementById("desk").setAttribute("class","hide");
+				document.getElementById("desk_left").setAttribute("class","hide");
+				document.getElementById("desk_middle").setAttribute("class","hide");
+				document.getElementById("desk_right").setAttribute("class","hide");
+				document.getElementById("toy_start").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("up_button").setAttribute("class","hide");
+				document.getElementById("box_close").setAttribute("class","hide");
+				document.getElementById("eight").setAttribute("class","basic_click");
+				document.getElementById("eight").addEventListener( "click", start, false );
+			}
+			function view_right(){
+				document.getElementById("desk").setAttribute("class","hide");
+				document.getElementById("desk_left").setAttribute("class","hide");
+				document.getElementById("desk_middle").setAttribute("class","hide");
+				document.getElementById("desk_right").setAttribute("class","hide");
+				document.getElementById("toy_start").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("up_button").setAttribute("class","hide");
+				document.getElementById("head").setAttribute("class","basic_click");
+				right = localStorage.N_start_right;
+				if(right != 1){
+					document.getElementById("aaa").play();
+					var inputname = "N_start_right";
+					var input = 1;
+					localStorage.setItem(inputname, input); 
+				}
+				document.getElementById("head").addEventListener( "click", start, false );
+			}
+			
+			function view_toy(){
+				document.getElementById("desk").setAttribute("class","hide");
+				document.getElementById("desk_left").setAttribute("class","hide");
+				document.getElementById("desk_middle").setAttribute("class","hide");
+				document.getElementById("desk_right").setAttribute("class","hide");
+				document.getElementById("toy_start").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("up_button").setAttribute("class","hide");
+				document.getElementById("toy").setAttribute("class","basic_click");
+				toys = localStorage.N_start_toys;
+				if(toys != 1){
+					document.getElementById("wahaha").play();
+					var inputname = "N_start_toys";
+					var input = 1;
+					localStorage.setItem(inputname, input); 
+				}
+				document.getElementById("toy").addEventListener( "click", start, false );
+			}
+		}
+		
+		window.addEventListener( "load", start, false );	
+	
+    </script>
+</head>
+<body>
+	<audio id = "aaa" preload = "auto">
+         <source src = "night_start/aaa.mp3" type = "audio/mpeg">
+    </audio>
+	<audio id = "ban" preload = "auto">
+         <source src = "night_start/ban.mp3" type = "audio/mpeg">
+    </audio>
+	<audio id = "wahaha" preload = "auto">
+         <source src = "night_start/wahaha.mp3" type = "audio/mpeg">
+    </audio>
+	<div id = "nightstart">
+		<img src = "night_start/desk.jpg" class = "basic" alt = "desk" id = "desk">
+		<img src = "night_start/desk_left.jpg" class = "desk_left" alt = "desk_left" id = "desk_left">
+		<img src = "night_start/desk_middle.jpg" class = "desk_middle" alt = "desk_middle" id = "desk_middle">
+		<img src = "night_start/desk_right.jpg" class = "desk_right" alt = "desk_right" id = "desk_right">
+		<img src = "night_start/toy_start.jpg" class = "toy_start" alt = "toy_start" id = "toy_start">
+		<img src = "night_start/box.jpg" class = "hide" alt = "box" id = "box">
+		<img src = "night_start/box_close.jpg" class = "hide" alt = "box_close" id = "box_close">
+		<img src = "night_start/box_open.jpg" class = "hide" alt = "box_open" id = "box_open">
+		<img src = "night_start/box_take.jpg" class = "hide" alt = "box_take" id = "box_take">
+		<img src = "night_start/eight.jpg" class = "hide" alt = "eight" id = "eight">
+		<img src = "night_start/head.jpg" class = "hide" alt = "head" id = "head">
+		<img src = "night_start/toy.jpg" class = "hide" alt = "toy" id = "toy">
+		<img src = "night_start/head2.jpg" class = "hide" alt = "head2" id = "head2">
+		<img src = "night_start/up_button.jpg" class = "up_button" alt = "up_button" id = "up_button" onclick="javascript:location.href='Projector_Night.html'">
+		<img src = "night_start/left_button.jpg" class = "left_button" alt = "left_button" id = "left_button" onclick="javascript:location.href='window_night.html'">
+		<img src = "night_start/right_button.jpg" class = "right_button" alt = "right_button" id = "right_button" onclick="javascript:location.href='wall_door_night.html'">	
+	</div>
+	<img src = "square.jpg" class = "square" alt = "square" id = "square" onclick="javascript:location.href='welcome.html'">
+	<img src = "sun.jpg" class = "sun" alt = "sun" id = "sun" onclick="javascript:location.href='start_day.html'">
+</body>
+
+</html>

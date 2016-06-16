@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Welcome</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+		body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.watch	{position:absolute;
+				 top:120px;
+				 left: 50%;
+				 margin-left:-325px;
+				 z-index:1;}
+		._ppt	{cursor:pointer;
+				 position:absolute;
+				 top:576px;
+				 left: 50%;
+				 margin-left:246px;
+				 z-index:2;}
+    ._ppt:hover {cursor:pointer;
+				 position:absolute;
+				 top:565px;
+				 left: 50%;
+				 margin-left:246px;
+				 box-shadow: 2px 5px 4px 0.5px darkgreen;
+				 z-index:2;}
+		.worker	{cursor:pointer;
+				 position:absolute;
+				 top:576px;
+				 left: 50%;
+				 margin-left:156px;
+				 z-index:2;}
+  .worker:hover {cursor:pointer;
+				 position:absolute;
+				 top:565px;
+				 left: 50%;
+				 margin-left:156px;
+				 box-shadow: 2px 5px 4px 0.5px darkgreen;
+				 z-index:2;}
+		.game	{cursor:pointer;
+				 position:absolute;
+				 top:576px;
+				 left: 50%;
+				 margin-left:66px;
+				 z-index:2;}
+     .game:hover {cursor:pointer;
+				 position:absolute;
+				 top:565px;
+				 left: 50%;
+				 margin-left:66px;
+				 box-shadow: 2px 5px 4px 0.5px darkgreen;
+				 z-index:2;}
+		span	{font-family: Comic Sans;
+				 color: black;
+				 position:absolute;
+				 top:10px;
+				 left: 50%;
+				 margin-left:-325px;
+				 z-index:1;
+				 letter-spacing:10px;
+				 text-shadow: 7px 7px #cccccc;
+				 font-size: 100px;}
+    </style>
+</head>
+<script>
+	function start(){ localStorage.clear(); }
+	window.addEventListener( "load", start, false );
+</script>
+<body>
+	<div id = "welcome">
+		<p><span>Welcome</span></p>
+	</div>
+	<div id = "watching">
+		<img src = "welcome/watch.jpg" class = "watch" alt = "watch" id = "watch">
+		<img src = "welcome/eraser_game.jpg" class = "game" alt = "game" id = "game" onclick="javascript:location.href='Start_game.html'">
+		<img src = "welcome/eraser_worker.jpg" class = "worker" alt = "worker" id = "worker" onclick="javascript:location.href=''">
+		<img src = "welcome/eraser_ppt.jpg" class = "_ppt" alt = "_ppt" id = "_ppt" onclick="javascript:location.href='team17_00357108_00357139_endproject.pptx'">
+		
+	</div>
+</body>
+
+</html>

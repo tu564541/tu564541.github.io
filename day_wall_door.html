@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>wall_door_day</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+	body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.show{		position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:2;
+					 visiblility: visible;
+					 }
+		.hide		{position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:1;
+					 visibility: hidden;}
+		.door{		cursor:pointer;
+					position:absolute;
+					 top:217px;
+					 left: 50%;
+					 margin-left:200px;
+					 z-index:3;
+					 visiblility: visible;}
+		.fan{		cursor:pointer;
+					position:absolute;
+					 top:299px;
+					 left: 50%;
+					 margin-left:123px;
+					 z-index:3;
+					 visiblility: visible;}
+	.wall_blue	{cursor:pointer;
+				 position:absolute;
+				 top:250px;
+				 left: 50%;
+				 margin-left:0px;
+				 z-index:3;
+				 visiblility: visible;}			
+		.close	{cursor:pointer;
+				 position:absolute;
+				 top:130px;
+				 left: 50%;
+				 margin-left:-190px;
+				 z-index:3;
+				 visiblility: visible;}
+	.nothing	{position:absolute;
+				 top: 21px;		
+				 margin-left: -407px;
+				 z-index: 0;
+				 visibility: visible;}
+  .right_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:338px;
+				 z-index:6;}
+   .left_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:-389px;
+				 z-index:6;}
+		.square	{cursor:pointer;
+				 position:absolute;
+				 top:595px;
+				 left: 50%;
+				 margin-left:420px;
+				 z-index:2;}
+		.moon	{cursor:pointer;
+				 position:absolute;
+				 top:15px;
+				 left: 50%;
+				 margin-left:-488px;
+				 z-index:2;}
+		.home	{cursor:pointer;
+				 position:absolute;
+				 top:583px;
+				 left: 50%;
+				 margin-left:310px;
+				 z-index:2;}
+    .home:hover {cursor:pointer;
+				 position:absolute;
+				 top:573px;
+				 left: 50%;
+				 margin-left:310px;
+				 z-index:2;}
+	   .restart {cursor:pointer;
+				 position:absolute;
+				 top:583px;
+				 left: 50%;
+				 margin-left:220px;
+				 z-index:2;}
+  .restart:hover {cursor:pointer;
+				 position:absolute;
+				 top:573px;
+				 left: 50%;
+				 margin-left:220px;
+				 z-index:2;}	
+	</style>
+	<script src="jquery.min.js">
+	</script>
+    <script>
+		var fan;
+		var password = localStorage.doorkey;;
+		function start(){
+			document.getElementById("door").setAttribute("class","door");
+			document.getElementById("wall_door").setAttribute("class","show");
+			document.getElementById("wall_blue").setAttribute("class","wall_blue");
+			document.getElementById("fan").setAttribute("class","fan");
+			
+			
+			document.getElementById("door_open").setAttribute("class","hide");
+			document.getElementById("door_close").setAttribute("class","hide");
+			document.getElementById("close").setAttribute("class","hide");
+			document.getElementById("fan1").setAttribute("class","hide");
+			document.getElementById("fan2").setAttribute("class","hide");
+			document.getElementById("fan3").setAttribute("class","hide");
+			document.getElementById("fan4").setAttribute("class","hide");
+			document.getElementById("wall").setAttribute("class","hide");
+			
+			
+			
+			document.getElementById("fan").addEventListener( "click", fan_num, false );
+			document.getElementById("door").addEventListener( "click", door_view, false );
+			document.getElementById("wall_blue").addEventListener( "click", blue, false );
+		}
+		function fan_num(){
+			document.getElementById("door").setAttribute("class","hide");
+			document.getElementById("wall_door").setAttribute("class","hide");
+			document.getElementById("wall_blue").setAttribute("class","hide");
+			document.getElementById("fan").setAttribute("class","hide");
+			document.getElementById("fan1").setAttribute("class","show");
+			fan = localStorage.fan;
+			$("#fan1").unbind('click').click(function(){
+				document.getElementById("fan1").setAttribute("class","hide");
+				document.getElementById("fan2").setAttribute("class","show");});
+			$("#fan2").unbind('click').click(function(){
+				document.getElementById("fan2").setAttribute("class","hide");
+				document.getElementById("fan3").setAttribute("class","show");});
+			$("#fan3").unbind('click').click(function(){
+				document.getElementById("fan3").setAttribute("class","hide");
+				document.getElementById("fan4").setAttribute("class","show");});
+			$("#fan4").unbind('click').click(function(){
+				document.getElementById("fan1").setAttribute("class","hide");
+				alert("nothing happened.");
+				start();
+				});
+		}
+		function door_view(){
+			document.getElementById("door").setAttribute("class","hide");
+			document.getElementById("wall_door").setAttribute("class","hide");
+			document.getElementById("wall_blue").setAttribute("class","hide");
+			document.getElementById("fan").setAttribute("class","hide");
+			document.getElementById("door_close").setAttribute("class","show");
+			document.getElementById("close").setAttribute("class","close");
+			$("#close").unbind('click').click(function(){
+				if( password == 1){
+					document.getElementById("door_close").setAttribute("class","hide");
+					document.getElementById("close").setAttribute("class","hide");
+					document.getElementById("door_open").setAttribute("class","show");
+					alert("Congradulation!! You're released!");
+					goodend();
+				}else{
+					window.alert("You can't open the door.");
+					start();
+				}
+			});
+		}
+		function blue(){
+			document.getElementById("door").setAttribute("class","hide");
+			document.getElementById("wall_door").setAttribute("class","hide");
+			document.getElementById("wall_blue").setAttribute("class","hide");
+			document.getElementById("fan").setAttribute("class","hide");
+			
+			document.getElementById("wall").setAttribute("class","show");
+			$("#wall").unbind('click').click(function(){
+				alert("sounds something in the wall.");
+				start();});
+		}
+		function goodend(){
+			localStorage.clear();
+			document.getElementById("win").play();
+			document.getElementById("door_open").setAttribute("class","hide");
+			document.getElementById("moon").setAttribute("class","hide");
+			document.getElementById("square").setAttribute("class","hide");
+			document.getElementById("left_button").setAttribute("class","hide");
+			document.getElementById("right_button").setAttribute("class","hide");
+			document.getElementById("end").setAttribute("class","show");
+			document.getElementById("home").setAttribute("class","home");
+			document.getElementById("restart").setAttribute("class","restart");
+		}
+	
+		
+		
+	window.addEventListener( "load", start, false );	
+	 </script>
+</head>
+<body>
+	<audio id = "win" preload = "auto">
+         <source src = "wall_door_day/win.mp3" type = "audio/mpeg">
+    </audio>
+	<div id = "place">
+		<center><img src = "wall_door_day/door.jpg" class ="door" id = "door"></center>
+		<center><img src = "wall_door_day/door_open.jpg" class ="hide" id = "door_open"></center>
+		<center><img src = "wall_door_day/door_close.jpg" class ="hide" id = "door_close"></center>
+		<center><img src = "wall_door_day/fan.jpg" class ="fan" id = "fan"></center>
+		<center><img src = "wall_door_day/fan1.jpg" class ="hide" id = "fan1"></center>
+		<center><img src = "wall_door_day/fan2.jpg" class ="hide" id = "fan2"></center>
+		<center><img src = "wall_door_day/fan3.jpg" class ="hide" id = "fan3"></center>
+		<center><img src = "wall_door_day/fan4.jpg" class ="hide" id = "fan4"></center>
+		<center><img src = "wall_door_day/wall_door.jpg" class ="show" id = "wall_door"></center>
+		<center><img src = "wall_door_day/wall.jpg" class ="hide" id = "wall"></center>
+		<center><img src = "wall_door_day/wall_blue.jpg" class ="wall_blue" id = "wall_blue"></center>
+		<center><img src = "wall_door_day/close.jpg" class ="hide" id = "close"></center>
+		<center><img src = "wall_door_day/nothing.jpg" class = "nothing" id = "nothing"></center>
+		<center><img src = "wall_door_day/end.jpg" class = "hide" id = "end"></center>
+		<img src = "day_start/left_button.jpg" class = "left_button" alt = "left_button" id = "left_button" onclick="javascript:location.href='start_day.html'">
+		<img src = "day_start/right_button.jpg" class = "right_button" alt = "right_button" id = "right_button" onclick="javascript:location.href='north_one.html'">
+		<img src = "wall_door_day/home.jpg" class = "hide" alt = "home" id = "home" onclick="javascript:location.href='Welcome.html'">
+		<img src = "wall_door_day/restart.jpg" class = "hide" alt = "restart" id = "restart" onclick="javascript:location.href='start_day.html'">
+	</div>
+	<img src = "square.jpg" class = "square" alt = "square" id = "square" onclick="javascript:location.href='welcome.html'">
+	<img src = "moon.jpg" class = "moon" alt = "moon" id = "moon" onclick="javascript:location.href='Start_Night.html'">
+</body>
+</html>

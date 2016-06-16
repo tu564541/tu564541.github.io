@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>day_whiteboard</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+	body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.show{		position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:2;
+					 visiblility: visible;
+					 }
+		.hide		{position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:1;
+					 visibility: hidden;}
+		.ppt{		cursor:pointer;
+					position:absolute;
+					 top:108px;
+					 left: 50%;
+					 margin-left:-267px;
+					 z-index:3;
+					 visiblility: visible;
+					 }
+		.nothing{
+					position:absolute;
+					top: 21px;		
+					margin-left: -407px;
+					z-index: 0;
+					visibility: visible;}	
+		.right_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:338px;
+				 z-index:6;}
+   .left_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:-389px;
+				 z-index:6;}
+		.square	{cursor:pointer;
+				 position:absolute;
+				 top:595px;
+				 left: 50%;
+				 margin-left:420px;
+				 z-index:2;}
+		.moon	{cursor:pointer;
+				 position:absolute;
+				 top:15px;
+				 left: 50%;
+				 margin-left:-488px;
+				 z-index:2;}
+	</style>
+	<script src="jquery.min.js">
+	</script>
+    <script>
+		var a;
+		var b = localStorage.blue;
+		var num = localStorage.screen;
+		function start(){
+			b = localStorage.blue;
+			if(b == 1){
+				document.getElementById("wb").setAttribute("class","hide");
+				document.getElementById("open").setAttribute("class","hide");
+				document.getElementById("ppt").setAttribute("class","hide");
+				document.getElementById("blue").setAttribute("class","show");
+			}else{
+				num = localStorage.screen;
+				if(num == 1){
+				open()
+				}else{
+					document.getElementById("wb").setAttribute("class","show");
+					document.getElementById("open").setAttribute("class","hide");
+					document.getElementById("ppt").setAttribute("class","ppt");
+					document.getElementById("ppt").addEventListener( "click", open, false );
+				}
+			}
+		}
+		function open(){
+			num = localStorage.screen;
+			if(num != 1){
+				document.getElementById("curtain").play();
+			}
+			document.getElementById("wb").setAttribute("class","hide");
+			document.getElementById("open").setAttribute("class","show");
+			document.getElementById("ppt").setAttribute("class","hide");
+			var inputname = "screen";
+			var input = 1;
+			localStorage.setItem(inputname, input);
+		}
+		window.addEventListener( "load", start, false );
+	</script>
+</head>
+<body>
+	<div id = "place">
+	<div id = "place">
+	<audio id = "curtain" preload = "auto">
+	<source src = "day_whiteboard/curtain.mp3" type = "audio/mpeg">
+	</audio>
+	<center><img src = "day_whiteboard/whiteboard.jpg" class ="show" id = "wb"></center>
+	<center><img src = "day_whiteboard/screen_open.jpg" class ="hide" id = "open"></center>
+	<center><img src = "day_whiteboard/ppt.jpg" class ="ppt" id = "ppt"></center>
+	<center><img src = "wall_door_day/nothing.jpg" class = "nothing" id = "nothing"></center>
+	<center><img src = "day_whiteboard/screen_blue1.jpg" class = "hide" id = "blue"></center>
+	<img src = "day_start/left_button.jpg" class = "left_button" alt = "left_button" id = "left_button" onclick="javascript:location.href='north_one.html'">
+		<img src = "day_start/right_button.jpg" class = "right_button" alt = "right_button" id = "right_button" onclick="javascript:location.href='day_window.html'">
+	</div>
+	<img src = "square.jpg" class = "square" alt = "square" id = "square" onclick="javascript:location.href='welcome.html'">
+	<img src = "moon.jpg" class = "moon" alt = "moon" id = "moon" onclick="javascript:location.href='Start_Night.html'">
+</body>
+</html>

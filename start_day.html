@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Start_day</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+	body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.desk_left{	cursor:pointer;
+					position:absolute;
+					 top:224px;
+					 left: 50%;
+					 margin-left:-362px;
+					 z-index:3;
+					 }
+		.desk_mid{	cursor:pointer;
+					position:absolute;
+					 top:310px;
+					 left: 50%;
+					 margin-left:-170px;
+					 z-index:3;	}
+		.desk_right{cursor:pointer;
+					position:absolute;
+					 top:257px;
+					 left: 50%;
+					 margin-left:228px;
+					 z-index:3;}
+		.desk_top	{cursor:pointer;
+					position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-64px;
+					 z-index:3;}			 
+		.desk{		position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:2;
+					 }
+		.right{		position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:1;
+					 visibility: hidden}
+		.show{		position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:4;
+					 visiblility: visible;
+					 }
+		.top_button{cursor:pointer;
+					position:absolute;
+					 top:375px;
+					 left: 50%;
+					 margin-left:-25px;
+					 z-index:5;
+					 visiblility: visible;
+					 }
+		.hide		{position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:1;
+					 visibility: hidden;}
+		.usb_button{cursor:pointer;
+					position:absolute;
+					 top:260px;
+					 left: 50%;
+					 margin-left:157px;
+					 z-index:5;
+					 visiblility: visible;}
+		.top_button2{cursor:pointer;
+					position:absolute;
+					 top:375px;
+					 left: 50%;
+					 margin-left:-25px;
+					 z-index:5;
+					 visiblility: visible;}
+		.nothing{
+					position:absolute;
+					top: 21px;		
+					margin-left: -407px;
+					z-index: 0;
+					visibility: visible;}
+		.right_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:338px;
+				 z-index:6;}
+   .left_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:-389px;
+				 z-index:6;}
+		.square	{cursor:pointer;
+				 position:absolute;
+				 top:595px;
+				 left: 50%;
+				 margin-left:420px;
+				 z-index:2;}
+		.moon	{cursor:pointer;
+				 position:absolute;
+				 top:15px;
+				 left: 50%;
+				 margin-left:-488px;
+				 z-index:2;}				 
+	</style>
+	<script src="jquery.min.js">
+	</script>
+	<script>
+		var box_opened = localStorage.N_start_finish;
+		var b = localStorage.blue;
+		var a = 0;
+		var num = localStorage.screen;
+		$(document).ready(function(){
+				
+				$("#desk_right").unbind('click').click(function(){
+					document.getElementById("desk_left").setAttribute("class", "hide");
+					document.getElementById("desk_right").setAttribute("class","hide");
+					document.getElementById("desk").setAttribute("class","hide");
+					document.getElementById("desk_mid").setAttribute("class","hide");
+					document.getElementById("right").setAttribute("class","show");
+					$("#right").unbind('click').click(function(){
+						document.getElementById("desk_left").setAttribute("class", "desk_left");
+						document.getElementById("desk_right").setAttribute("class","desk_right");
+						document.getElementById("desk").setAttribute("class","desk");
+						document.getElementById("desk_mid").setAttribute("class","desk_mid");
+						document.getElementById("right").setAttribute("class","hide");
+				});});
+				$("#desk_left").unbind('click').click(function(){
+					document.getElementById("desk_left").setAttribute("class", "hide");
+					document.getElementById("desk_right").setAttribute("class","hide");
+					document.getElementById("desk").setAttribute("class","hide");
+					document.getElementById("desk_mid").setAttribute("class","hide");
+					document.getElementById("left").setAttribute("class","show");
+					$("#left").unbind('click').click(function(){
+						document.getElementById("desk_left").setAttribute("class", "desk_left");
+						document.getElementById("desk_right").setAttribute("class","desk_right");
+						document.getElementById("desk").setAttribute("class","desk");
+						document.getElementById("desk_mid").setAttribute("class","desk_mid");
+						document.getElementById("left").setAttribute("class","hide");
+				});});
+				$("#desk_mid").unbind('click').click(function(){
+					if(box_opened != 1){
+						a = 0;
+						document.getElementById("desk_left").setAttribute("class", "hide");
+						document.getElementById("desk_right").setAttribute("class","hide");
+						document.getElementById("desk").setAttribute("class","hide");
+						document.getElementById("desk_mid").setAttribute("class","hide");
+						document.getElementById("mid").setAttribute("class","show");
+						$("#mid").unbind('click').click(function(){
+							if(a == 0){document.getElementById( "boxs" ).play();
+							alert("try to open the box at night.");
+								a = 1;}
+							$("#mid").unbind('click').click(function(){
+								document.getElementById("desk_left").setAttribute("class", "desk_left");
+								document.getElementById("desk_right").setAttribute("class","desk_right");
+								document.getElementById("desk").setAttribute("class","desk");
+								document.getElementById("desk_mid").setAttribute("class","desk_mid");
+								document.getElementById("mid").setAttribute("class","hide");
+								
+							});
+						});
+					}else{
+						document.getElementById("desk_left").setAttribute("class", "hide");
+						document.getElementById("desk_right").setAttribute("class","hide");
+						document.getElementById("desk").setAttribute("class","hide");
+						document.getElementById("desk_mid").setAttribute("class","hide");
+						document.getElementById("mid2").setAttribute("class","show");
+						$("#mid2").unbind('click').click(function(){
+								document.getElementById("desk_left").setAttribute("class", "desk_left");
+								document.getElementById("desk_right").setAttribute("class","desk_right");
+								document.getElementById("desk").setAttribute("class","desk");
+								document.getElementById("desk_mid").setAttribute("class","desk_mid");
+								document.getElementById("mid2").setAttribute("class","hide");	
+							});
+					}
+				});
+				$("#desk_top").click(function(){
+				if(localStorage.usb ==1){
+					document.getElementById("desk").setAttribute("class","hide");
+					document.getElementById("desk_left").setAttribute("class", "hide");
+					document.getElementById("desk_right").setAttribute("class","hide");
+					document.getElementById("desk_mid").setAttribute("class","hide");
+					document.getElementById("top1").setAttribute("class", "show");
+					document.getElementById("top_button").setAttribute("class", "top_button");
+					b = localStorage.blue;
+					if(b == 1){
+						document.getElementById("top2").setAttribute("class", "show");
+						document.getElementById("top1").setAttribute("class", "hide");
+						document.getElementById("top_button").setAttribute("class", "hide");
+					}
+				
+				}else{
+					document.getElementById("desk").setAttribute("class","hide");
+					document.getElementById("desk_left").setAttribute("class", "hide");
+					document.getElementById("desk_right").setAttribute("class","hide");
+					document.getElementById("desk_mid").setAttribute("class","hide");
+					document.getElementById("usb").setAttribute("class","show");
+					document.getElementById("top_button2").setAttribute("class","top_button2");
+					document.getElementById("usb_button").setAttribute("class","usb_button");}
+								
+					
+						$("#top_button2").unbind('click').click(function(){
+								alert("please take the usb first.");
+								
+								localStorage.setItem(inputname,input);
+						});
+						$("#top1").unbind('click').click(function(){
+							document.getElementById("top1").setAttribute("class", "hide");
+							document.getElementById("top_button").setAttribute("class", "hide");
+							document.getElementById("desk_left").setAttribute("class", "desk_left");
+							document.getElementById("desk_right").setAttribute("class","desk_right");
+							document.getElementById("desk").setAttribute("class","desk");
+							document.getElementById("desk_mid").setAttribute("class","desk_mid");
+							
+						});
+						$("#usb_button").unbind('click').click(function(){
+								var inputname = "usb";
+								var input = 1;
+								localStorage.setItem(inputname,input);
+								document.getElementById("usb").setAttribute("class", "hide");
+								document.getElementById("usb_button").setAttribute("class", "hide");
+								document.getElementById("top_button2").setAttribute("class", "hide");
+								document.getElementById("top1").setAttribute("class", "show");
+								document.getElementById("top_button").setAttribute("class", "top_button");
+						});
+						
+						$("#top_button").unbind('click').click(function(){
+									b = localStorage.blue;
+									if(b == 1){
+									document.getElementById("top1").setAttribute("class", "hide");
+									document.getElementById("top_button").setAttribute("class", "hide");
+									document.getElementById("desk_left").setAttribute("class", "desk_left");
+									document.getElementById("desk_right").setAttribute("class","desk_right");
+									document.getElementById("desk").setAttribute("class","desk");
+									document.getElementById("desk_mid").setAttribute("class","desk_mid");
+									}else{
+									num = localStorage.screen;
+									if(num!=1){alert("Please open the screen!");}else{
+									document.getElementById("top1").setAttribute("class", "hide");
+									document.getElementById("top_button").setAttribute("class", "hide");
+									document.getElementById("top2").setAttribute("class", "show");
+									b = localStorage.blue;
+									if(b != 1){
+									$("#top2").unbind('click').click(function(){
+										document.getElementById("top2").setAttribute("class", "hide");
+										document.getElementById("screen_open").setAttribute("class", "show");
+											$("#screen_open").unbind('click').click(function(){
+												document.getElementById("screen_open").setAttribute("class", "hide");
+												document.getElementById("screen_blue").setAttribute("class", "show");
+											});
+									});}
+									var inputname = "blue";
+									var input = 1;
+									localStorage.setItem(inputname, input);
+									}}
+								});
+								
+				});
+			});
+		
+	</script>
+</head>
+<body>
+	<div id = "place">
+	<audio id = "boxs" preload = "auto">
+	<source src = "day_start/boxs.mp3" type = "audio/mpeg">
+	</audio>
+		<center><img src = "day_start/desk_left1.gif" class ="desk_left" id = "desk_left"></center>
+		<center><img src = "day_start/desk_mid1.gif" class ="desk_mid" id = "desk_mid"></center>
+		<center><img src = "day_start/desk_right1.gif" class ="desk_right" id = "desk_right"></center>
+		<center><img src = "day_start/desk.jpg" class ="desk" id = "desk"></center>
+		<center><img src = "day_start/right.jpg" class ="right" id = "right"></center>
+		<center><img src = "day_start/left.jpg" class ="right" id = "left"></center>
+		<center><img src = "day_start/mid.jpg" class ="right" id = "mid"></center>
+		<center><img src = "day_start/mid2.jpg" class ="hide" id = "mid2"></center>
+		<center><img src = "day_start/desk_top.gif" class ="desk_top" id = "desk_top"></center>
+		<center><img src = "day_start/top1.jpg" class ="hide" id = "top1"></center>
+		<center><img src = "day_start/top2.jpg" class ="hide" id = "top2"></center>
+		<center><img src = "day_start/top_button.gif" class ="hide" id = "top_button"></center>
+		<center><img src = "day_start/screen_close.jpg" class ="hide" id = "screen_close"></center>
+		<center><img src = "day_start/screen_open.jpg" class ="hide" id = "screen_open"></center>
+		<center><img src = "day_start/screen_blue1.jpg" class ="hide" id = "screen_blue"></center>
+		<center><img src = "day_start/usb1.jpg" class ="hide" id = "usb"></center>
+		<center><img src = "day_start/usb1_button.jpg" class ="hide" id = "usb_button"></center>
+		<center><img src = "day_start/top_button2.jpg" class ="hide" id = "top_button2"></center>
+		<center><img src = "wall_door_day/nothing.jpg" class = "nothing" id = "nothing"></center>
+		<img src = "day_start/left_button.jpg" class = "left_button" alt = "left_button" id = "left_button" onclick="javascript:location.href='day_window.html'">
+		<img src = "day_start/right_button.jpg" class = "right_button" alt = "right_button" id = "right_button" onclick="javascript:location.href='day_wall_door.html'">
+	</div>
+	<img src = "square.jpg" class = "square" alt = "square" id = "square" onclick="javascript:location.href='welcome.html'">
+	<img src = "moon.jpg" class = "moon" alt = "moon" id = "moon" onclick="javascript:location.href='Start_Night.html'">
+</body>

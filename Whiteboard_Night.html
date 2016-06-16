@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Whiteboard_Night</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+		body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.square	{cursor:pointer;
+				 position:absolute;
+				 top:595px;
+				 left: 50%;
+				 margin-left:420px;
+				 z-index:2;}
+		.sun	{cursor:pointer;
+				 position:absolute;
+				 top:15px;
+				 left: 50%;
+				 margin-left:-500px;
+				 z-index:2;}					 
+		.basic	{position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+   .basic_click {cursor:pointer;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+	.whiteboard	{cursor:pointer;
+				 position:absolute;
+				 top:220px;
+				 left: 50%;
+				 margin-left:-205px;
+				 z-index:2;}
+	  .computer {cursor:pointer;
+				 position:absolute;
+				 top:218px;
+				 left: 50%;
+				 margin-left:267px;
+				 z-index:2;}
+		.screen	{cursor:pointer;
+				 position:absolute;
+				 top:119px;
+				 left: 50%;
+				 margin-left:-392px;
+				 z-index:2;}
+  .right_button {cursor:pointer;
+				 position:absolute;
+				 top:570px;
+				 left: 50%;
+				 margin-left:350px;
+				 z-index:2;}
+  .left_button {cursor:pointer;
+				 position:absolute;
+				 top:570px;
+				 left: 50%;
+				 margin-left:-389px;
+				 z-index:2;}
+   .screen_left {position:absolute;
+				 top:119px;
+				 left: 50%;
+				 margin-left:-392px;
+				 z-index:2;}
+  .screen_close {cursor:pointer;
+				 position:absolute;
+				 top:34px;
+				 left: 50%;
+				 margin-left:-327px;
+				 z-index:2;}		 				 
+		.hide 	{visibility:hidden;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;}
+    </style>
+    <script>
+		var i = 2;
+		var j = localStorage.N_j;
+		var k = localStorage.N_k;
+		var doorkey = localStorage.doorkey;
+		var USB = localStorage.usb;
+		var whiteboard_finish = localStorage.whiteboard;
+		function start(){
+			document.getElementById("night_white").setAttribute("class","basic");
+			document.getElementById("whiteboard").setAttribute("class","whiteboard");
+			document.getElementById("computer").setAttribute("class","computer");
+			document.getElementById("screen").setAttribute("class","screen");
+			document.getElementById("left_button").setAttribute("class","left_button");
+			document.getElementById("right_button").setAttribute("class","right_button");
+			document.getElementById("screen_left").setAttribute("class","hide");
+			document.getElementById("screen_close").setAttribute("class","hide");
+			document.getElementById("enter").setAttribute("class","hide");
+			document.getElementById("wrong").setAttribute("class","hide");
+			document.getElementById("whiteboard").addEventListener( "click", view_whiteboard, false );
+			document.getElementById("screen").addEventListener( "click", view_screen, false );
+			document.getElementById("computer").addEventListener( "click", view_computer, false );
+			
+		}
+		
+		//白板
+		function view_whiteboard(){
+			document.getElementById("night_white").setAttribute("class","hide");
+			document.getElementById("whiteboard").setAttribute("class","hide");
+			document.getElementById("computer").setAttribute("class","hide");
+			document.getElementById("screen").setAttribute("class","hide");
+			document.getElementById("left_button").setAttribute("class","hide");
+			document.getElementById("right_button").setAttribute("class","hide");
+			whiteboard_finish = localStorage.whiteboard;
+			if(whiteboard_finish != 1){
+				var num = document.getElementById("num");
+				num.setAttribute("class","basic_click");
+				num.addEventListener( "click", view_num, false );
+			}else{
+				var num = document.getElementById("num");
+				num.setAttribute("src","night_whiteboard/9.jpg");
+				num.setAttribute("class","basic_click");
+				i = 10;
+				num.addEventListener( "click", view_num, false );
+				
+			}
+		}
+		function view_num(){
+			if(i <= 9){
+				var num = document.getElementById("num");
+				num.setAttribute("src","night_whiteboard/"+ i +".jpg");
+				i++;				
+			}else{
+				var num = document.getElementById("num");
+				document.getElementById("num").setAttribute("class","hide");
+				var inputname = "whiteboard";
+				var input = 1;
+				localStorage.setItem(inputname, input); 
+				start();
+			}		
+		}
+		
+		//電腦
+		function view_computer(){
+			document.getElementById("night_white").setAttribute("class","hide");
+			document.getElementById("whiteboard").setAttribute("class","hide");
+			document.getElementById("computer").setAttribute("class","hide");
+			document.getElementById("screen").setAttribute("class","hide");
+			document.getElementById("left_button").setAttribute("class","hide");
+			document.getElementById("right_button").setAttribute("class","hide");
+			k = localStorage.N_k;
+			if(k != 1){
+				var computer_no_usb = document.getElementById("computer_no_usb");
+				computer_no_usb.setAttribute("class","basic_click");
+				computer_no_usb.addEventListener( "click", view_computer_open, false );
+			}else{
+				enterans();
+			}
+		}
+		
+		function view_computer_open(){
+			//USB = 1;
+			if(USB == 1){
+				document.getElementById("computer_no_usb").setAttribute("class","hide");
+				document.getElementById("computer_usb").setAttribute("class","basic_click");
+				var inputname = "N_k";
+				var input = 1;
+				localStorage.setItem(inputname, input); 
+				document.getElementById("computer_usb").addEventListener( "click", enterans, false );
+			}else{
+				window.alert("You have to find the USB first.");
+				document.getElementById("computer_no_usb").setAttribute("class","hide");
+				start();
+			}
+		}
+		
+		function enterans(){
+			document.getElementById("computer_usb").setAttribute("class","hide");
+			document.getElementById("enter").setAttribute("class","basic_click");
+			doorkey = localStorage.doorkey;
+			if(doorkey != 1){
+				var answer;
+				answer = window.prompt("Please enter the password:", "0000");
+				if(answer == 5482){
+					document.getElementById("opensound").play();
+					document.getElementById("enter").setAttribute("src","night_whiteboard/yes.jpg");
+					window.alert("the door is opened.");
+					var inputname = "doorkey";
+					var input = 1;
+					localStorage.setItem(inputname, input); 
+					start();
+				}else{
+					document.getElementById("wrong").setAttribute("class","basic");
+					window.alert("Wrong!!!");
+					start();
+				}
+			}else{
+				document.getElementById("enter").setAttribute("src","night_whiteboard/yes.jpg");
+				document.getElementById("enter").addEventListener( "click", start, false );
+			}
+		}
+		
+		//投影幕
+		function view_screen(){
+			j = localStorage.N_j;
+			if(j != 1){
+				document.getElementById("night_white").setAttribute("class","hide");
+				document.getElementById("whiteboard").setAttribute("class","hide");
+				document.getElementById("computer").setAttribute("class","hide");
+				document.getElementById("screen").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("screen_left").setAttribute("class","basic");
+				var screen_close = document.getElementById("screen_close");
+				screen_close.setAttribute("class","screen_close");
+				screen_close.addEventListener( "click", view_screen_open, false );
+			}else{
+				document.getElementById("night_white").setAttribute("class","hide");
+				document.getElementById("whiteboard").setAttribute("class","hide");
+				document.getElementById("computer").setAttribute("class","hide");
+				document.getElementById("screen").setAttribute("class","hide");
+				document.getElementById("left_button").setAttribute("class","hide");
+				document.getElementById("right_button").setAttribute("class","hide");
+				document.getElementById("screen_left").setAttribute("src","night_whiteboard/screen_left_op_end.jpg");
+				document.getElementById("screen_left").setAttribute("class","basic_click");
+				document.getElementById("screen_left").addEventListener( "click", start, false );
+			}	
+		}
+		
+		function view_screen_open(){
+			if(j != 1){
+				document.getElementById("screen_left").setAttribute("class","hide");
+				document.getElementById("screen_close").setAttribute("class","hide");
+				document.getElementById("screen_left").setAttribute("src","night_whiteboard/screen_ghost.jpg");
+				document.getElementById("screen_left").setAttribute("class","basic_click");
+				document.getElementById( "gyaaaa" ).play();
+				var inputname = "N_j";
+				var input = 1;
+				localStorage.setItem(inputname, input); 
+			}
+			document.getElementById("screen_left").addEventListener( "click", start, false );
+		}
+		
+		window.addEventListener( "load", start, false );	
+	
+    </script>
+</head>
+
+<body>
+	<audio id = "gyaaaa" preload = "auto">
+         <source src = "night_whiteboard/gyaaaa.mp3" type = "audio/mpeg">
+    </audio>
+	<audio id = "opensound" preload = "auto">
+         <source src = "night_whiteboard/opensound.mp3" type = "audio/mpeg">
+    </audio>
+	<div id = "nightwhiteboard">
+		<img src = "night_whiteboard/night_white.jpg" class = "basic" alt = "night_white" id = "night_white">
+		<img src = "night_whiteboard/whiteboard.jpg" class = "whiteboard" alt = "whiteboard" id = "whiteboard">
+		<img src = "night_whiteboard/computer.jpg" class = "computer" alt = "computer" id = "computer">
+		<img src = "night_whiteboard/screen.jpg" class = "screen" alt = "screen" id = "screen">
+		<img src = "night_whiteboard/1.jpg" class = "hide" alt = "num" id = "num">
+		<img src = "night_whiteboard/screen_left.jpg" class = "hide" alt = "screen_left" id = "screen_left">
+		<img src = "night_whiteboard/screen_left_op.jpg" class = "hide" alt = "screen_left_op" id = "screen_left_op">
+		<img src = "night_whiteboard/screen_close.jpg" class = "hide" alt = "screen_close" id = "screen_close">
+		<img src = "night_whiteboard/screen_ghost.jpg" class = "hide" alt = "screen_ghost" id = "screen_ghost">
+		<img src = "night_whiteboard/screen_left_op_end.jpg" class = "hide" alt = "screen_left_op_end" id = "screen_left_op_end">
+		<img src = "night_whiteboard/computer_no_usb.jpg" class = "hide" alt = "computer_no_usb" id = "computer_no_usb">
+		<img src = "night_whiteboard/computer_usb.jpg" class = "hide" alt = "computer_usb" id = "computer_usb">
+		<img src = "night_whiteboard/enter.jpg" class = "hide" alt = "enter" id = "enter">
+		<img src = "night_whiteboard/yes.jpg" class = "hide" alt = "yes" id = "yes">
+		<img src = "night_whiteboard/wrong.jpg" class = "hide" alt = "wrong" id = "wrong">
+		<img src = "night_whiteboard/left_button.jpg" class = "left_button" alt = "left_button" id = "left_button" onclick="javascript:location.href='wall_door_night.html'">
+		<img src = "night_whiteboard/right_button.jpg" class = "right_button" alt = "right_button" id = "right_button" onclick="javascript:location.href='window_night.html'">	
+	</div>
+	<img src = "square.jpg" class = "square" alt = "square" id = "square" onclick="javascript:location.href='welcome.html'">
+	<img src = "sun.jpg" class = "sun" alt = "sun" id = "sun" onclick="javascript:location.href='start_day.html'">
+</body>
+
+</html>

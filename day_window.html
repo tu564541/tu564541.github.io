@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>wall_door_day</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+	body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.show{		position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:2;
+					 visiblility: visible;
+					 }
+		.hide		{position:absolute;
+					 top:28px;
+					 left: 50%;
+					 margin-left:-400px;
+					 z-index:1;
+					 visibility: hidden;}
+		.window{	cursor:pointer;
+					position:absolute;
+					 top:180px;
+					 left: 50%;
+					 margin-left:-250px;
+					 z-index:3;
+					 visiblility: visible;}
+		.nothing{
+					position:absolute;
+					top: 21px;		
+					margin-left: -407px;
+					z-index: 0;
+					visibility: visible;}
+		.right_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:338px;
+				 z-index:6;}
+   .left_button {cursor:pointer;
+				 position:absolute;
+				 top:557px;
+				 left: 50%;
+				 margin-left:-389px;
+				 z-index:6;}
+		.square	{cursor:pointer;
+				 position:absolute;
+				 top:595px;
+				 left: 50%;
+				 margin-left:420px;
+				 z-index:2;}
+		.moon	{cursor:pointer;
+				 position:absolute;
+				 top:15px;
+				 left: 50%;
+				 margin-left:-488px;
+				 z-index:2;}
+	</style>
+	<script src="jquery.min.js">
+	</script>
+    <script>
+		
+		function start(){
+			document.getElementById("close").setAttribute("class","show");
+			document.getElementById("open").setAttribute("class","hide");
+			document.getElementById("window").setAttribute("class","window");
+			document.getElementById("window").addEventListener( "click", open, false );
+		}
+		function open(){
+			document.getElementById( "down" ).play();
+			document.getElementById("close").setAttribute("class","hide");
+			document.getElementById("open").setAttribute("class","show");
+			document.getElementById("window").setAttribute("class","hide");
+			document.getElementById("open").addEventListener( "click", start, false );
+		}
+		window.addEventListener( "load", start, false );	
+	 </script>
+</head>
+<body>
+	<div id = "place">
+	<audio id = "down" preload = "auto">
+	<source src = "day_window/down.mp3" type = "audio/mpeg">
+	</audio>
+		<center><img src = "day_window/win_open.jpg" class ="hide" id = "open"></center>
+		<center><img src = "day_window/win_close.jpg" class ="show" id = "close"></center>
+		<center><img src = "day_window/window1.jpg" class ="hide" id = "window"></center>
+		<center><img src = "wall_door_day/nothing.jpg" class = "nothing" id = "nothing"></center>
+		<img src = "day_start/left_button.jpg" class = "left_button" alt = "left_button" id = "left_button" onclick="javascript:location.href='day_whiteboard.html'">
+		<img src = "day_start/right_button.jpg" class = "right_button" alt = "right_button" id = "right_button" onclick="javascript:location.href='start_day.html'">
+	</div>
+	<img src = "square.jpg" class = "square" alt = "square" id = "square" onclick="javascript:location.href='welcome.html'">
+	<img src = "moon.jpg" class = "moon" alt = "moon" id = "moon" onclick="javascript:location.href='Start_Night.html'">
+</body>
+</html>

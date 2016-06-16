@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Window_Night</title>
+    <meta charset="utf-8" />
+    <style type="text/css">	
+		body	{background-image: url(back.jpg);
+				 background-repeat: no-repeat;
+				 background-attachment: fixed;
+				 background-position: center;
+				 background-size: cover;}
+		.square	{cursor:pointer;
+				 position:absolute;
+				 top:595px;
+				 left: 50%;
+				 margin-left:420px;
+				 z-index:2;}
+		.sun	{cursor:pointer;
+				 position:absolute;
+				 top:15px;
+				 left: 50%;
+				 margin-left:-500px;
+				 z-index:2;}	
+		.windows{cursor:pointer;
+				 position:absolute;
+				 top:195px;
+				 left: 50%;
+				 margin-left:-355px;
+				 z-index:2;}
+		.basic	{position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+   .basic_click {cursor:pointer;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;
+				 z-index:1;}
+		.hide 	{visibility:hidden;
+				 position:absolute;
+				 top:20px;
+				 left: 50%;
+				 margin-left:-400px;} 
+		.ghost	{cursor:pointer;
+				 position:absolute;
+				 top:184px;
+				 left: 50%;
+				 margin-left:-360px;
+				 z-index:3;}
+  .right_button {cursor:pointer;
+				 position:absolute;
+				 top:570px;
+				 left: 50%;
+				 margin-left:350px;
+				 z-index:2;}
+   .left_button {cursor:pointer;
+				 position:absolute;
+				 top:570px;
+				 left: 50%;
+				 margin-left:-389px;
+				 z-index:2;}
+    </style>
+	<script src="jquery.min.js">
+	</script>
+    <script>
+	var finish = localStorage.N_window_finish;
+	if(finish != 1){
+		$(document).ready(function(){
+			$("#windows").click(
+				function(){
+					document.getElementById("open").setAttribute("class","hide");
+					document.getElementById("windows").setAttribute("class","hide");
+					document.getElementById("ghost").setAttribute("class","basic_click");
+					document.getElementById( "surprise" ).play();
+					$("#ghost").show();
+				}
+			);
+			$("#ghost").click(
+				function(){
+					$("#ghost").hide();
+					$("#windows").hide();
+					document.getElementById("close").setAttribute("class","basic");
+					var inputname = "N_window_finish";
+					var input = 1;
+					localStorage.setItem(inputname, input); 
+				}
+			);
+		});
+	}else{
+		$(document).ready(function(){
+			document.getElementById("open").setAttribute("class","hide");
+			document.getElementById("windows").setAttribute("class","hide");
+			document.getElementById("close").setAttribute("class","basic");
+			
+		});
+	}
+    </script>
+</head>
+
+<body>
+	<audio id = "surprise" preload = "auto">
+         <source src = "night_window/surprise.mp3" type = "audio/mpeg">
+    </audio>
+	<div id = "nightwindow">
+		<img src = "night_window/night_window_open.jpg" class = "basic" alt = "open" id = "open">
+		<img src = "night_window/night_window_close.jpg" class = "hide" alt = "close" id = "close">
+		<img src = "night_window/night_window2.jpg" class = "windows" alt = "windows" id = "windows">
+		<img src = "night_window/ghost.jpg" class = "hide" alt = "ghost" id = "ghost">
+		<img src = "night_window/left_button.jpg" class = "left_button" alt = "left_button" id = "left_button" onclick="javascript:location.href='Whiteboard_Night.html'">
+		<img src = "night_window/right_button.jpg" class = "right_button" alt = "right_button" id = "right_button" onclick="javascript:location.href='Start_Night.html'">
+	</div>
+	<img src = "square.jpg" class = "square" alt = "square" id = "square" onclick="javascript:location.href='welcome.html'">
+	<img src = "sun.jpg" class = "sun" alt = "sun" id = "sun" onclick="javascript:location.href='start_day.html'">
+</body>
+
+</html>
