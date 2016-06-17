@@ -158,7 +158,7 @@
 						document.getElementById("mid").setAttribute("class","show");
 						$("#mid").unbind('click').click(function(){
 							if(a == 0){document.getElementById( "boxs" ).play();
-							alert("try to open the box at night.");
+							alert("試著在晚上打開箱子\nTry to open the box at night.");
 								a = 1;}
 							$("#mid").unbind('click').click(function(){
 								document.getElementById("desk_left").setAttribute("class", "desk_left");
@@ -210,7 +210,7 @@
 								
 					
 						$("#top_button2").unbind('click').click(function(){
-								alert("please take the usb first.");
+								alert("請先取下USB\nPlease take the usb first.");
 								
 								localStorage.setItem(inputname,input);
 						});
@@ -245,7 +245,7 @@
 									document.getElementById("desk_mid").setAttribute("class","desk_mid");
 									}else{
 									num = localStorage.screen;
-									if(num!=1){alert("Please open the screen!");}else{
+									if(num!=1){alert("請先打開投影幕!\nPlease open the screen!");}else{
 									document.getElementById("top1").setAttribute("class", "hide");
 									document.getElementById("top_button").setAttribute("class", "hide");
 									document.getElementById("top2").setAttribute("class", "show");

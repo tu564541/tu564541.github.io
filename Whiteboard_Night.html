@@ -169,7 +169,7 @@
 				localStorage.setItem(inputname, input); 
 				document.getElementById("computer_usb").addEventListener( "click", enterans, false );
 			}else{
-				window.alert("You have to find the USB first.");
+				window.alert("你必須先找到USB\nYou have to find the USB first.");
 				document.getElementById("computer_no_usb").setAttribute("class","hide");
 				start();
 			}
@@ -181,18 +181,18 @@
 			doorkey = localStorage.doorkey;
 			if(doorkey != 1){
 				var answer;
-				answer = window.prompt("Please enter the password:", "0000");
+				answer = window.prompt("請輸入密碼(Please enter the password):", "0000");
 				if(answer == 5482){
 					document.getElementById("opensound").play();
 					document.getElementById("enter").setAttribute("src","night_whiteboard/yes.jpg");
-					window.alert("the door is opened.");
+					window.alert("門打開了!!!\nthe door is opened!!!");
 					var inputname = "doorkey";
 					var input = 1;
 					localStorage.setItem(inputname, input); 
 					start();
 				}else{
 					document.getElementById("wrong").setAttribute("class","basic");
-					window.alert("Wrong!!!");
+					window.alert("錯誤!!!\nWrong!!!\n<請注意每個密碼的左上角>");
 					start();
 				}
 			}else{

@@ -150,7 +150,7 @@
 				document.getElementById("fan4").setAttribute("class","show");});
 			$("#fan4").unbind('click').click(function(){
 				document.getElementById("fan1").setAttribute("class","hide");
-				alert("nothing happened.");
+				alert("什麼事都沒發生\nNothing happened.");
 				start();
 				});
 		}
@@ -166,10 +166,10 @@
 					document.getElementById("door_close").setAttribute("class","hide");
 					document.getElementById("close").setAttribute("class","hide");
 					document.getElementById("door_open").setAttribute("class","show");
-					alert("Congradulation!! You're released!");
+					alert("恭喜!!脫逃成功!\nCongradulation!! You're released!");
 					goodend();
 				}else{
-					window.alert("You can't open the door.");
+					window.alert("你無法打開門\nYou can't open the door.");
 					start();
 				}
 			});
@@ -182,7 +182,7 @@
 			
 			document.getElementById("wall").setAttribute("class","show");
 			$("#wall").unbind('click').click(function(){
-				alert("sounds something in the wall.");
+				alert("牆壁裡似乎有什麼\nSounds something in the wall.");
 				start();});
 		}
 		function goodend(){
